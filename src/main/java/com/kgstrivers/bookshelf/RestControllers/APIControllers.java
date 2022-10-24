@@ -33,6 +33,16 @@ public class APIControllers {
         return bookrepo.findAll();
     }
 
+    @GetMapping("/books/{id}")
+    public Bookdetails getparticularBook(@PathVariable long id)
+    {
+        log.info("=======================Entered into getparticularBook() Function=========================");
+        Bookdetails bookdetails = bookrepo.findById(id).get();
+
+        log.info("======Entered id:"+id+"'s Data got Picked");
+        return bookdetails;
+    }
+
     @PostMapping("/save")
     public Bookdetails saveBooks(@RequestBody Bookdetails bookdetails)
     {
