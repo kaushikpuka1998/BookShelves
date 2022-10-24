@@ -11,8 +11,6 @@ public class BookshelfApplication {
 	private static Logger log = LogManager.getLogger(BookshelfApplication.class);
 	public static void main(String[] args) {
 		SpringApplication.run(BookshelfApplication.class, args);
-
-
 		log.info("=======================Server Started=========================");
 	}
 
