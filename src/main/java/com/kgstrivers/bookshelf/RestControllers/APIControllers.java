@@ -1,5 +1,7 @@
 package com.kgstrivers.bookshelf.RestControllers;
 import com.kgstrivers.bookshelf.Models.Bookdetails;
+import com.kgstrivers.bookshelf.Models.ErrorResponse;
+import com.kgstrivers.bookshelf.Models.Response;
 import com.kgstrivers.bookshelf.Repository.Bookrepo;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -30,53 +32,89 @@ public class APIControllers {
     }
 
     @GetMapping("/books/{id}")
-    public Bookdetails getparticularBook(@PathVariable long id)
+    public Response getparticularBook(@PathVariable long id)
     {
         log.info("=======================Entered into getparticularBook() Function=========================");
-        Bookdetails bookdetails = bookrepo.findById(id).get();
-        log.info("======Entered id:"+id+"'s Data got Picked");
-        return bookdetails;
+        Response res = new Response();
+        try{
+            Bookdetails bookdetails = bookrepo.findById(id).get();
+            log.info("======Entered id:"+id+"'s Data got Picked");
+            res = new Response(true,bookdetails);
+        }
+        catch(Exception e)
+        {
+            res = new Response(false,null);
+        }
+
+        return res;
     }
 
     @PostMapping("/save")
-    public Bookdetails saveBooks(@RequestBody Bookdetails bookdetails)
+    public Response saveBooks(@RequestBody Bookdetails bookdetails)
     {
-        log.info("=======================Entered into saveBooks() Function=========================");
-        bookrepo.save(bookdetails);
 
-        log.info("Data"+bookdetails+ "inserted into DB====");
-        return bookdetails;
+        log.info("=======================Entered into saveBooks() Function=========================");
+        try{
+            bookrepo.save(bookdetails);
+
+            log.info("Data"+bookdetails+ "inserted into DB====");
+            return new Response(true, bookdetails);
+        }
+        catch (Exception e)
+        {
+            log.error("Error with Exception in Save:" + e);
+            return new Response(false,null);
+        }
+
     }
 
     @PutMapping("/updatedata/{id}")
-    public Bookdetails updateBook(@PathVariable long id, @RequestBody Bookdetails bookdetails)
+    public Response updateBook(@PathVariable long id, @RequestBody Bookdetails bookdetails)
     {
-        log.info("=======================Entered into updateBook() Function=========================");
-        Bookdetails selectedbook = bookrepo.findById(id).get();
-        selectedbook.setBookname(bookdetails.getBookname());
-        selectedbook.setAuthor(bookdetails.getAuthor());
-        selectedbook.setIsbn_no(bookdetails.getIsbn_no());
-        selectedbook.setLink(bookdetails.getLink());
-        selectedbook.setPublisher(bookdetails.getPublisher());
-        selectedbook.setPrice(bookdetails.getPrice());
+        try{
+            log.info("=======================Entered into updateBook() Function=========================");
+            Bookdetails selectedbook = bookrepo.findById(id).get();
+            selectedbook.setBookname(bookdetails.getBookname());
+            selectedbook.setAuthor(bookdetails.getAuthor());
+            selectedbook.setIsbn_no(bookdetails.getIsbn_no());
+            selectedbook.setLink(bookdetails.getLink());
+            selectedbook.setPublisher(bookdetails.getPublisher());
+            selectedbook.setPrice(bookdetails.getPrice());
 
-        bookrepo.save(selectedbook);
+            bookrepo.save(selectedbook);
 
-        log.info("Data"+selectedbook+ "inserted into DB====");
-        return selectedbook;
+            log.info("Data"+selectedbook+ "inserted into DB====");
+            return new Response(true,selectedbook);
+        }
+        catch (Exception e)
+        {
+            log.error("Error with Exception in Update:" + e);
+            return new Response(false,null);
+        }
+
 
 
     }
 
     @DeleteMapping("/delete/{id}")
-    public Bookdetails deleteBook(@PathVariable long id)
+    public Response deleteBook(@PathVariable long id)
     {
-        log.info("=======================Entered into deleteBook() Function=========================");
-        Bookdetails bookdetails = bookrepo.findById(id).get();
-        bookrepo.delete(bookdetails);
+        try{
+            log.info("=======================Entered into deleteBook() Function=========================");
+            Bookdetails bookdetails = bookrepo.findById(id).get();
+            bookrepo.delete(bookdetails);
 
-        log.info("======Entered id:"+id+"'s Data got deleted");
-        return bookdetails;
+            log.info("======Entered id:"+id+"'s Data got deleted");
+
+            Response res = new Response(true,bookdetails);
+            return res;
+        }
+        catch(Exception e)
+        {
+            log.error("Error with Exception in Delete:" + e);
+            return new Response(false,null);
+        }
+
     }
 
 
