@@ -6,6 +6,8 @@ import com.kgstrivers.bookshelf.Repository.Bookrepo;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
@@ -91,9 +93,6 @@ public class APIControllers {
             log.error("Error with Exception in Update:" + e);
             return new Response(false,null);
         }
-
-
-
     }
 
     @DeleteMapping("/delete/{id}")
