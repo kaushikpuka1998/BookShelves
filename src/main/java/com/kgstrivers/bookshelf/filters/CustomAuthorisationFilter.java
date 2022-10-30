@@ -32,7 +32,7 @@ public class CustomAuthorisationFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
 
         log.info("CustomAuthorisationFilter");
-        if(request.getServletPath().equals("/api/login"))
+        if(request.getServletPath().equals("/api/login") || request.getServletPath().equals("/token/refresh/**") )
         {
             log.info("Requested Servlet Path:"+request.getServletPath());
             filterChain.doFilter(request,response);
