@@ -24,6 +24,20 @@ After Deleting Data from DB (GET)
 
 ![Screenshot from 2022-10-25 04-18-23](https://user-images.githubusercontent.com/52675676/197646009-381b6b89-d6c7-403d-8314-36320dc6020b.png)
 
+Authorization:
+
+![Screenshot from 2022-10-30 18-45-53](https://user-images.githubusercontent.com/52675676/198880690-fe9bf5c7-1bd8-418f-9caf-fd9f8d267676.png)
+Getting Access Token & Refresh Token (POST)
+
+
+![Screenshot from 2022-10-30 18-38-15](https://user-images.githubusercontent.com/52675676/198880714-acec60ba-2074-4f4f-86cc-9aa2a9b160d6.png)
+UnAuthorized (GET)
+
+
+![Screenshot from 2022-10-30 18-38-04](https://user-images.githubusercontent.com/52675676/198880753-eddb2d89-1f25-4933-a44a-5dbda3a3716b.png)
+Authorized Got The Data from DB(GET)
+
+
 
 Dependency Used
 
@@ -45,12 +59,49 @@ Dependency Used
 			<version>1.2.17</version>
 		</dependency>
 
+			<dependency>
+				<groupId>org.projectlombok</groupId>
+				<artifactId>lombok</artifactId>
+				<scope>provided</scope>
+			</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-config -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-config</artifactId>
+			<version>5.7.4</version>
+		</dependency>
+
+
+
+
 		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-jpa -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 			<version>2.7.5</version>
 		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-core -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-core</artifactId>
+			<version>5.7.4</version>
+		</dependency>
+
+
+		<!-- https://mvnrepository.com/artifact/org.springframework.security.oauth/spring-security-oauth2 -->
+		<dependency>
+			<groupId>org.springframework.security.oauth</groupId>
+			<artifactId>spring-security-oauth2</artifactId>
+			<version>2.5.2.RELEASE</version>
+		</dependency>
+
 
 
 		<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
@@ -60,7 +111,12 @@ Dependency Used
 			<version>8.0.31</version>
 		</dependency>
 
-
+		<!-- https://mvnrepository.com/artifact/com.auth0/java-jwt -->
+		<dependency>
+			<groupId>com.auth0</groupId>
+			<artifactId>java-jwt</artifactId>
+			<version>4.2.1</version>
+		</dependency>
 
 	</dependencies>
 Database:
