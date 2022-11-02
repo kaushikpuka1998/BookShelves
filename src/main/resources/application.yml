@@ -1,0 +1,36 @@
+server:
+  port: 8080
+spring:
+  jpa:
+    hibernate:
+      ddl-auto:update
+  profiles:
+    active: production
+
+
+---
+spring:
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/springboot
+    username: root
+    password: Kltb@1961
+  profiles: development
+
+
+#---
+#spring:
+#  profiles : stage
+#  datasource:
+#    url: jdbc:localhost:3306/springboot
+#    username: root
+#    password: Kltb@1961
+
+---
+spring:
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://database-1.ctptob5zedpa.ap-northeast-1.rds.amazonaws.com:3306/springboot
+    username: admin
+    password: Kltb1961
+  profiles: production
